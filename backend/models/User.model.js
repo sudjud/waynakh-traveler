@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
   login: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true, },
   trips: [
     {
       place: {
@@ -15,7 +15,6 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false,
       },
-      default: null,
       time: {
         type: mongoose.SchemaTypes.Date,
       },
