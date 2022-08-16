@@ -1,4 +1,4 @@
-import footer from './footer.style.sass';
+import footer from './footer.module.sass';
 
 function Footer() {
 
