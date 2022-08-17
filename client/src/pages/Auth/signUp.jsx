@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../../features/userSlice";
+import BgImage from './video/gori.mp4'
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -53,6 +54,9 @@ const SignUp = () => {
 
   return (
     <div className={auth.auth}>
+        <video autoPlay loop muted>
+            <source src={BgImage} type="video/mp4"/>
+        </video>
       <form onSubmit={handleSubmit}>
         <h1>Регистрация</h1>
         <input
@@ -97,13 +101,13 @@ const SignUp = () => {
           )}
           {error && <div className={auth.warningSignUp}>* Это имя уже используется</div>}
         </div>
-        <p>
+        <p className={auth.personalData}>
           Нажимая на кнопку «Зарегистрироваться» Вы даёте согласие на{" "}
           <Link to="/auth">обработку своих персональных данных</Link>{" "}
         </p>
         <button onClick={handleRegisterUser}>Зарегистрироваться</button>
       </form>
-      <p>
+      <p className={auth.haveAcc}>
         Уже есть аккаунт? <Link to="/login">Войдите</Link>
       </p>
     </div>
