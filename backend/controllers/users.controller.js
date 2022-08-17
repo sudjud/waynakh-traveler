@@ -71,7 +71,7 @@ module.exports.userController = {
       });
       res.json(token);
     } catch (error) {
-      res.json(error.toStrig());
+      res.json(error.toString());
     }
   },
 };
