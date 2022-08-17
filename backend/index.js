@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload())
 app.use(cors());
 app.use(require("./routes/index.js"));
-// app.use(express.static('uploads/images'));
+app.use(express.static('uploads/images'));
 
 
 mongoose.
