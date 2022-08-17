@@ -14,19 +14,30 @@ module.exports.userController = {
   registerUsers: async (req, res) => {
     try {
       const { name, password_1, mail } = req.body;
-      // Перед регистрацие пользователя проверяем логин на сходство
+      // Перед регистрацией пользователя проверяем логин на сходство
       const candidate = await User.findOne({ login: name });
-      console.log(/[^\s]/gim.test(name));
+      // Валидация
+      if (!/[^\s]/gim.test(name)) {
+        return res
+          .status(401)
+          .json({ error: "* Все поля должны быть заполнены" });
+      }
+      if (!/[^\s]/gim.test(mail)) {
+        return res
+          .status(401)
+          .json({ error: "* Все поля должны быть заполнены" });
+      }
+
       if (candidate) {
-        return res.status(401).json({ error: "Логин уже занят" });
+        return res.status(401).json({ error: "* Это имя пользователя уже занято" });
       }
       // Проверяем используется такая почта или нет
       const emailCandidate = await User.findOne({ email: mail });
       if (emailCandidate) {
-        return res.status(401).json({ error: "Email уже используется" });
+        return res.status(401).json({ error: "* этот email уже используется" });
       }
       //   repeat password
-      console.log(password_1);
+      // console.log(password_1);
       if (password_1.length > 4 && password_1.length < 8) {
         const hash = await bcrypt.hash(
           password_1,
@@ -41,7 +52,7 @@ module.exports.userController = {
 
         return res.json(user);
       }
-      return res.status(401).json({ error: "Пароль некорректный" });
+      return res.status(401).json({ error: "* Пароль некорректный" });
     } catch (error) {
       res.json(error.toString());
     }
@@ -53,13 +64,13 @@ module.exports.userController = {
       const candidate = await User.findOne({ login });
       //   console.log("asdasd");
       if (!candidate) {
-        return res.status(401).json({ error: "Неверный логин" });
+        return res.status(401).json({ error: "* Неверный логин или пароль" });
       }
 
       const valid = await bcrypt.compare(password, candidate.password);
 
       if (!valid) {
-        return res.status(401).json({ error: "Неверный пароль" });
+        return res.status(401).json({ error: "* Неверный логин или пароль" });
       }
 
       const payload = {

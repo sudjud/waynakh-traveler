@@ -3,8 +3,8 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../features/userSlice";
-import BgImage from './video/gori.mp4'
+import { addUser, deleteError } from "../../features/userSlice";
+import BgImage from "./video/gori.mp4";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -13,9 +13,12 @@ const SignUp = () => {
   const [password_2, setPassword_2] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordShown2, setPasswordShown2] = useState(false);
+  const [equal, setEqual] = useState(false);
+  const [messagePass, setMessagePass] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.user.error);
+  let error = useSelector((state) => state.user.error);
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
@@ -34,6 +37,13 @@ const SignUp = () => {
 
   const handleSetPassword1 = (e) => {
     setPassword_1(e.target.value);
+    if (password_1.length > 3) {
+      setEqual(false);
+    }
+  };
+
+  const handleSetEqual = () => {
+    if (password_1.length < 3) setEqual(true);
   };
 
   const handleSetPassword2 = (e) => {
@@ -45,18 +55,25 @@ const SignUp = () => {
   };
 
   const handleRegisterUser = () => {
-    dispatch(addUser({ name, password_1, mail })).then((data) => {
-      if (!data.error) {
-        navigate("/login", { replace: true });
-      }
-    });
+    if (password_1 === password_2) {
+      dispatch(addUser({ name, password_1, mail })).then((data) => {
+        if (!data.error) {
+          navigate("/login", { replace: true });
+        }
+      });
+      setMessagePass(false);
+      return;
+    }
+    setMessagePass(true);
+    dispatch(deleteError());
+    console.log(error);
   };
 
   return (
     <div className={auth.auth}>
-        <video autoPlay loop muted>
-            <source src={BgImage} type="video/mp4"/>
-        </video>
+      <video autoPlay loop muted>
+        <source src={BgImage} type="video/mp4" />
+      </video>
       <form onSubmit={handleSubmit}>
         <h1>Регистрация</h1>
         <input
@@ -77,6 +94,7 @@ const SignUp = () => {
             value={password_1}
             onChange={handleSetPassword1}
             placeholder="Пароль"
+            onFocus={handleSetEqual}
           />
           {passwordShown ? (
             <AiFillEyeInvisible className={auth.eye} onClick={togglePassword} />
@@ -91,6 +109,7 @@ const SignUp = () => {
             onChange={handleSetPassword2}
             placeholder="Подтверждение пароля"
           />
+
           {passwordShown2 ? (
             <AiFillEyeInvisible
               className={auth.eye}
@@ -99,7 +118,15 @@ const SignUp = () => {
           ) : (
             <AiFillEye className={auth.eye} onClick={togglePassword2} />
           )}
-          {error && <div className={auth.warningSignUp}>* Это имя уже используется</div>}
+          {error && <div className={auth.warningSignUp}>{error}</div>}
+          {equal && (
+            <div className={auth.warningSignUp}>
+              * Пароль должен содержать больше 4 символов
+            </div>
+          )}
+          {messagePass && (
+            <div className={auth.warningSignUp}>* Пароли не совпадают</div>
+          )}
         </div>
         <p className={auth.personalData}>
           Нажимая на кнопку «Зарегистрироваться» Вы даёте согласие на{" "}
