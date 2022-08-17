@@ -1,11 +1,12 @@
 const { Router } = require("express");
-const { tripController } = require("../controllers/trips.controllers");
+const { tripController } = require('../controllers/trips.controllers');
 const router = Router();
 
-router.get("/trip", tripController.getTrip);
-router.get("/trip/:id", tripController.getTrips);
+
+router.get("/trip", tripController.getTrips);
+router.get("/trip/:id", tripController.getTrip);
 router.post("/trip", tripController.postTrip);
 router.delete("/trip/:id", tripController.deleteTrip);
-router.patch("/trip/:id", tripController.patchTrip);
+router.patch("/trip/:id", tripController.updatePlace);
 
 module.exports = router;
