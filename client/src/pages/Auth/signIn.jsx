@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../features/userSlice";
+import BgImage from './video/gori.mp4'
+
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
@@ -39,6 +41,9 @@ const SignIn = () => {
 
   return (
     <div className={auth.auth}>
+        <video autoPlay loop muted>
+            <source src={BgImage} type="video/mp4"/>
+        </video>
       <form onSubmit={handleSubmit}>
         <h1>Вход</h1>
         <input
@@ -67,7 +72,7 @@ const SignIn = () => {
         </div>
         <button onClick={handleSignIn}>Войти</button>
       </form>
-      <p>
+      <p className={auth.haveAcc}>
         Ещё нет аккаунта? <Link to="/auth">Зарегистрируйтесь</Link>
       </p>
     </div>
