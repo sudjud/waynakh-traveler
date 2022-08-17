@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const placeSlice = createSlice({
-    name : 'plice',
+    name : 'place',
     initialState: {},
     reducers : {},
     extraReducers : () => {}
