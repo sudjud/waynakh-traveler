@@ -1,7 +1,9 @@
 import auth from "./auth.module.sass";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../../features/userSlice";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -10,7 +12,9 @@ const SignUp = () => {
   const [password_2, setPassword_2] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordShown2, setPasswordShown2] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const error = useSelector((state) => state.user.error);
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
@@ -35,9 +39,21 @@ const SignUp = () => {
     setPassword_2(e.target.value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleRegisterUser = () => {
+    dispatch(addUser({ name, password_1, mail })).then((data) => {
+      if (!data.error) {
+        navigate("/login", { replace: true });
+      }
+    });
+  };
+
   return (
     <div className={auth.auth}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Регистрация</h1>
         <input
           type="text"
@@ -79,12 +95,13 @@ const SignUp = () => {
           ) : (
             <AiFillEye className={auth.eye} onClick={togglePassword2} />
           )}
+          {error && <div className={auth.warningSignUp}>* Это имя уже используется</div>}
         </div>
         <p>
           Нажимая на кнопку «Зарегистрироваться» Вы даёте согласие на{" "}
           <Link to="/auth">обработку своих персональных данных</Link>{" "}
         </p>
-        <button>Зарегистрироваться</button>
+        <button onClick={handleRegisterUser}>Зарегистрироваться</button>
       </form>
       <p>
         Уже есть аккаунт? <Link to="/login">Войдите</Link>
