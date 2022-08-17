@@ -1,6 +1,8 @@
 const Trip = require('../models/Trip.model')
-import jwt from 'jsonwebtoken'
-module.exports = tripController =  {
+const jwt = require("jsonwebtoken")
+
+module.exports.tripController = {
+
   postTrip: async (req, res) => {
     try {
       const token = req.headers.authorization.split(' ')[1];
@@ -27,7 +29,7 @@ module.exports = tripController =  {
   getTrip: async (req, res) => {
     try {
       const trip = await Trip.findById(req.params.id)
-    res.json(trip)
+      res.json(trip)
     } catch (error) {
       res.json(error)
     }
@@ -36,6 +38,7 @@ module.exports = tripController =  {
   deleteTrip: async (req, res) => {
     try {
       const newTrip = await Trip.findByIdAndDelete(req.params.id)
+      res.json('маршрут удален')
     } catch (error) {
       res.json(error)
     }
@@ -45,10 +48,10 @@ module.exports = tripController =  {
     try {
       const newTrip = await Trip.findByIdAndUpdate(req.params.id, {
         ...req.body
-    })
+      })
+      res.json(newTrip)
     } catch (error) {
       res.json(error)
     }
-  }
-
+  },
 }
