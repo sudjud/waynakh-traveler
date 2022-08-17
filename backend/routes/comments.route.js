@@ -1,9 +1,10 @@
 const { Router } = require("express");
-// const { userController } = require("../controllers/users.controller");
-// const router = Router();
+const { commentController } = require("../controllers/comments.controller");
+const router = Router();
 
-// router.get("/users", userController.getUser);
-// router.post("/register", userController.registerUsers);
-// router.post("/login", userController.login);
+router.get("/comment", commentController.getComment);
+router.post("/comment", commentController.postComment);
+router.delete("/delete/comment/:commentId", commentController.deleteComment);
+router.patch("/patch/comment/:commentId", commentController.patchComment);
 
 module.exports = router;
