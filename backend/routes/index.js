@@ -5,5 +5,7 @@ router.use(require("./users.route"));
 router.use(require('./places.route'))
 router.use(require('./comments.route'))
 router.use(require('./image.route'))
+router.use(require('./categories.route'))
+router.use(require('./areas.route'))
 
 module.exports = router;
