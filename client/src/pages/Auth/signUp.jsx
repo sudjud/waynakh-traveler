@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
  
 
-
-
 const SignUp = () => {
     const [name, setName] = useState('')
     const [mail, setMail] = useState('')
@@ -53,7 +51,7 @@ const SignUp = () => {
                     <p>Нажимая на кнопку «Зарегистрироваться» Вы даёте согласие на <Link to='/auth'>обработку своих персональных данных</Link> </p>
                     <button>Зарегистрироваться</button>
                     </form> 
-                <p>Уже есть аккаунт? <Link to='/login'>Войдите</Link></p>
+                <p>Уже есть аккаунт?<Link to='/login'>Войдите</Link></p>
             </div>
     );
 };
