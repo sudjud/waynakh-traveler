@@ -58,6 +58,9 @@ const userSlice = createSlice({
     deleteToken: (state, action) => {
       state.token = null;
     },
+    deleteError: (state, action) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -92,5 +95,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { deleteToken } = userSlice.actions;
+export const { deleteToken, deleteError } = userSlice.actions;
 export default userSlice.reducer;
