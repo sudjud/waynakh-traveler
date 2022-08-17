@@ -13,50 +13,53 @@ module.exports.userController = {
   },
   registerUsers: async (req, res) => {
     try {
-      const { login, password, email } = req.body;
+      const { name, password_1, mail } = req.body;
       // Перед регистрацие пользователя проверяем логин на сходство
-      const candidate = await User.findOne({ login });
+      const candidate = await User.findOne({ login: name });
+      console.log(/[^\s]/gim.test(name));
       if (candidate) {
         return res.status(401).json({ error: "Логин уже занят" });
       }
       // Проверяем используется такая почта или нет
-      const emailCandidate = await User.findOne({ email });
+      const emailCandidate = await User.findOne({ email: mail });
       if (emailCandidate) {
         return res.status(401).json({ error: "Email уже используется" });
       }
       //   repeat password
-      if (password.length > 4 && password.length < 8) {
+      console.log(password_1);
+      if (password_1.length > 4 && password_1.length < 8) {
         const hash = await bcrypt.hash(
-          password,
+          password_1,
           Number(process.env.BCRYPT_ROUNDS)
         );
 
         const user = await User.create({
-          login,
+          login: name,
           password: hash,
-          email,
+          email: mail,
         });
 
         return res.json(user);
       }
       return res.status(401).json({ error: "Пароль некорректный" });
     } catch (error) {
-      res.json(error.toStrig());
+      res.json(error.toString());
     }
   },
   login: async (req, res) => {
     try {
+      // console.log('asd')
       const { login, password } = req.body;
       const candidate = await User.findOne({ login });
-
+      //   console.log("asdasd");
       if (!candidate) {
-        res.status(401).json({ error: "Неверный пароль" });
+        return res.status(401).json({ error: "Неверный логин" });
       }
 
       const valid = await bcrypt.compare(password, candidate.password);
 
       if (!valid) {
-        res.status(401).json({ error: "Неверный пароль" });
+        return res.status(401).json({ error: "Неверный пароль" });
       }
 
       const payload = {
