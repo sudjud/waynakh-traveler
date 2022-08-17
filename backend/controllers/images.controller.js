@@ -3,15 +3,15 @@ const Image = require('../models/Image.model');
 
 module.exports.imageController = {
   upload: async (req, res) => {
-    const glassesImage = req.files.glassesImage
+    const image = req.files.image
     const randName = Math.round(Math.random() * 100000000000);
-    const uploadPath = path.resolve('uploads', 'images', `${randName}${glassesImage.name}`);
+    const uploadPath = path.resolve('uploads', 'images', `${randName}${image.name}`);
     try {
-      glassesImage.mv(uploadPath);
+      image.mv(uploadPath);
       let newImage = await Image.create({
-        name: `${randName}${glassesImage.name}`
+        name: `${randName}${image.name}`
       })
-      res.json(newImage._id);
+      res.json(await Image.find({}));
     } catch (e) {
       res.json(e);
     }

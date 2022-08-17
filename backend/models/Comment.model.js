@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const commentSchema = mongoose.Schema({
   text: String,
-  photo: String,
+  photos: [
+    {
+      type: String,
+      ref: 'Image'
+    }
+  ],
   user: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",
