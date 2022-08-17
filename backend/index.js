@@ -6,6 +6,7 @@ const app = express();
 require('dotenv').config();
 
 app.use(express.json());
+app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload())
 app.use(cors());

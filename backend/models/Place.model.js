@@ -27,3 +27,7 @@ const placeSchema = mongoose.Schema({
     }
   ]
 })
+
+const Place = mongoose.model('Place', placeSchema);
+
+module.exports = Place;
