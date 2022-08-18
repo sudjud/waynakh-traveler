@@ -1,31 +1,69 @@
 import card from './card.module.sass'
+import { BsShare } from 'react-icons'
 
 function MCard(props) {
-  const {  } = props
+  const { id,
+    name,
+    area,
+    desc,
+    author,
+    likes,
+    comments,
+    photos 
+  } = props
+
+  let images = photos.map(item => {
+    return {
+      url: `http://localhost:3030/uploads/image/${item.name}`
+    }
+  })
 
   return (
     <div className={card.m}>
       <div className={card.m__info}>
         <div className={card.m__name}>
-          Ушкалойские башни
+          { name }
         </div>
         <div className={card.m__area}>
-          Шатойский район
+          { area.name }
         </div>
         <div className={card.m__desc}>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum vel rerum ad debitis delectus beatae minus non quisquam dignissimos maxime excepturi voluptates nobis iusto sed at animi ratione veniam, aperiam, vitae asperiores! Amet alias mollitia dolorum dicta ratione praesentium iusto sequi et dignissimos vitae illo, tenetur, laudantium, quia consequatur consequuntur excepturi sit quae optio asperiores aspernatur corporis magni accusantium?
+          { desc }
         </div>
         <div className={card.m__features}>
-          <div className={card.m__author}>By admin</div>
-          <div className={card.m__reactions}></div>
+          <div className={card.m__author}>By { author.login }</div>
+          <div className={card.m__reactions}>
+            <div className={card.m__likes}>
+              <div className={card.m__toLike}>
+                LIKE
+              </div>
+              <div className={card.m__likesCount}>
+                { likes.length }
+              </div>
+            </div>
+            <div className={card.m__comments}>
+              <div className={card.m__toComment}>
+                COMMENT
+              </div>
+              <div className={card.m__commentsCount}>
+                { comments.length }
+              </div>
+            </div>
+          </div>
         </div>
         <div className={card.m__buttons}>
-          <div className={card.m__share}></div>
+          <div className={card.m__share}>{ BsShare }</div>
           <button className={card.m__viewAll}>Подробнее</button>
         </div>
       </div>
       <div className={card.m__img}>
-
+        <SimpleImageSlider
+          width={100}
+          height={250}
+          images={images}
+          showBullets={true}
+          showNavs={true}
+        />
       </div>
     </div>
   )
