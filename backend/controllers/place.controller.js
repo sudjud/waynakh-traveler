@@ -5,7 +5,6 @@ module.exports.placeController = {
 
   postPlace: async (req, res) => {
     try {
-      console.log(1);
       if(!req.headers.authorization) {
         return res.json('Нет прав доступа')
       }
