@@ -1,12 +1,12 @@
 import card from './card.module.sass'
 
-function Card(props) {
+function MCard(props) {
   const {  } = props
 
   return (
-    <div className={card.card}>
+    <div className={card.m}>
 
     </div>
   )
 };
-export default Card;
+export default MCard;
