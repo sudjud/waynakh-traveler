@@ -7,7 +7,7 @@ import SignIn from './pages/Auth/SignIn';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchAreas } from './features/areaSlice';
-
+import YandexMap from "./components/YandexMap/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,10 +19,11 @@ function App() {
   return (
     <div className="app">
       <Header />
-        <Routes>
-          <Route path='/login' element={<SignIn />}></Route>
-          <Route path='/auth' element={<SignUp />}></Route>
-        </Routes>
+      <Routes>
+        <Route path="/login" element={<SignIn />}></Route>
+        <Route path="/auth" element={<SignUp />}></Route>
+        <Route path="/map" element={<YandexMap />}></Route>
+      </Routes>
     </div>
   );
 }

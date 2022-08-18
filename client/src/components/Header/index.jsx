@@ -116,7 +116,7 @@ function Header() {
             </svg>
           </div>
           <div>
-            <NavLink to="#" className={header.nav}>
+            <NavLink to="/map" className={header.nav}>
               Карта
             </NavLink>
           </div>
@@ -125,24 +125,24 @@ function Header() {
               Маршруты
             </NavLink>
           </div>
-           <div>
-           <NavLink to="#" className={header.nav}>
+          <div>
+            <NavLink to="#" className={header.nav}>
               Районы
             </NavLink>
-           </div>
-           <div>
-           <NavLink to="#" className={header.nav}>
+          </div>
+          <div>
+            <NavLink to="#" className={header.nav}>
               О нас
             </NavLink>
-           </div>
+          </div>
         </div>
         <div className={header.search}>
-          <NavLink to='#'>
+          <NavLink to="#">
             <FaSearchLocation />
           </NavLink>
         </div>
         <div className={header.signin}>
-          <NavLink to="#">
+          <NavLink to="/auth">
             <FaUserCircle />
           </NavLink>
         </div>

@@ -4,8 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../features/userSlice";
-import BgImage from './video/gori.mp4'
-
+import BgImage from "./video/gori.mp4";
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
@@ -41,9 +40,9 @@ const SignIn = () => {
 
   return (
     <div className={auth.auth}>
-        <video autoPlay loop muted>
-            <source src={BgImage} type="video/mp4"/>
-        </video>
+      <video autoPlay loop muted>
+        <source src={BgImage} type="video/mp4" />
+      </video>
       <form onSubmit={handleSubmit}>
         <h1>Вход</h1>
         <input
@@ -64,11 +63,7 @@ const SignIn = () => {
           ) : (
             <AiFillEye className={auth.eye} onClick={togglePassword} />
           )}
-          {error && (
-            <div className={auth.warningSignIn}>
-             {error}
-            </div>
-          )}
+          {error && <div className={auth.warningSignIn}>{error}</div>}
         </div>
         <button onClick={handleSignIn}>Войти</button>
       </form>
