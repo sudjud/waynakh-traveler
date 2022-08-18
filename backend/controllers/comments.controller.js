@@ -1,15 +1,16 @@
 const Comment = require("../models/Comment.model");
+const Place = require("../models/Place.model");
 
 module.exports.commentController = {
   postComment: async (req, res) => {
     try {
       const { text, photo } = req.body;
-      const { user, place } = req.params;
+      const { userId, placeId } = req.params;
       const comment = await Comment.create({
         text,
         photo,
-        user,
-        place,
+        user: userId,
+        place: placeId,
       });
       res.json(comment);
     } catch (error) {
@@ -41,7 +42,9 @@ module.exports.commentController = {
   },
   getComment: async (req, res) => {
     try {
-      const comments = await Comment.find().populate("user", "-__v");
+      const comments = await Comment.find()
+        .populate("user", "-__v")
+        .populate("place");
       res.json(comments);
     } catch (error) {
       res.json(error.toString());

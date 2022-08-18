@@ -20,7 +20,7 @@ module.exports.placeController = {
   getPlaces: async (req, res) => {
     try {
       const places = await Place.find({});
-      res.json(Places);
+      res.json(places);
     } catch (e) {
       res.json(e);
     }
