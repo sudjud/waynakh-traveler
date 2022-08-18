@@ -29,7 +29,9 @@ module.exports.userController = {
       }
 
       if (candidate) {
-        return res.status(401).json({ error: "* Это имя пользователя уже занято" });
+        return res
+          .status(401)
+          .json({ error: "* Это имя пользователя уже занято" });
       }
       // Проверяем используется такая почта или нет
       const emailCandidate = await User.findOne({ email: mail });
