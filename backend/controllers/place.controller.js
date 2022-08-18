@@ -5,10 +5,17 @@ module.exports.placeController = {
 
   postPlace: async (req, res) => {
     try {
+      console.log(1);
+      if(!req.headers.authorization) {
+        return res.json('Нет прав доступа')
+      }
       const token = req.headers.authorization.split(' ')[1];
-      const userId = await jwt.verify(token, process.env.JWT_SECRET).id;
+      const user = await jwt.verify(token, process.env.JWT_SECRET);
+      if(!user.isAdmin) {
+        return res.json('Нет прав доступа')
+      }
       const newPlace = await Place.create({
-        author: userId,
+        author: user.id,
         ...req.body
       })
       res.json(newPlace)

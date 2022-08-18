@@ -11,7 +11,7 @@ module.exports.imageController = {
       let newImage = await Image.create({
         name: `${randName}${image.name}`
       })
-      res.json(await Image.find({}));
+      res.json(newImage._id);
     } catch (e) {
       res.json(e);
     }
