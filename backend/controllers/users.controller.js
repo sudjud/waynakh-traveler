@@ -90,4 +90,20 @@ module.exports.userController = {
       res.json(error.toString());
     }
   },
+
+  addTravel: async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.user.id, {
+        $push: {
+          travels: {
+            ...req.body
+          }
+        }
+      }
+      );
+      res.json('add travel')
+    } catch (error) {
+      res.json(error.message)
+    }
+  }
 };

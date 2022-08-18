@@ -5,7 +5,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 
 router.get("/comment", commentController.getComment);
 router.post(
-  "/comment/:userId/place/:placeId",
+  "/comment/place/:placeId",
   authMiddleware,
   commentController.postComment
 );

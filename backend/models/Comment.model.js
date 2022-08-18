@@ -3,18 +3,14 @@ const commentSchema = mongoose.Schema({
   text: String,
   photos: [
     {
-      type: String,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: 'Image'
     }
   ],
   user: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "User",
-  },
-  place: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "Place",
-  },
+  }
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
