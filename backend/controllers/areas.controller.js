@@ -1,12 +1,9 @@
 const Area = require("../models/Areas.model")
 
 module.exports.areasController = {
-    getAllAreas : (req, res) => {
-        Area.find({}, (err, data) => {
-            if (!err) {
-                res.json(data)
-            }
-        })
+    getAllAreas :async (req, res) => {
+      
+      res.json(await Area.find({}))
     },
     areasCreate : async (req, res) => {
         try {
