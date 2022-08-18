@@ -14,7 +14,6 @@ function App() {
           <Route path='/login' element={<SignIn />}></Route>
           <Route path='/auth' element={<SignUp />}></Route>
         </Routes>
-      <Footer />
     </div>
   );
 }
