@@ -25,7 +25,17 @@ const placeSchema = mongoose.Schema({
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'Image'
     }
-  ]
+  ],
+  categories : [
+    {
+    type : mongoose.SchemaTypes.ObjectId,
+    ref : 'Category'
+  }
+],
+  areas : {
+    type : mongoose.SchemaTypes.ObjectId,
+    ref : 'Area'
+  }
 })
 
 const Place = mongoose.model('Place', placeSchema);
