@@ -56,6 +56,7 @@ module.exports.placeController = {
       const newPlace = await Place.findByIdAndUpdate(req.params.id, {
         ...req.body
       });
+      res.json(newPlace)
     } catch (e) {
       res.json(e);
     }
