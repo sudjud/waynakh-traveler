@@ -12,9 +12,9 @@ import YandexMap from "./components/YandexMap/index";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchAreas())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(fetchCategories())
+  // }, [dispatch])
 
   return (
     <div className="app">
