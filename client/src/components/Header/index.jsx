@@ -1,6 +1,6 @@
 import header from "./header.module.sass";
 import { NavLink } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaSearchLocation } from "react-icons/fa";
 
 function Header() {
   return (
@@ -115,19 +115,34 @@ function Header() {
               </g>
             </svg>
           </div>
-          <div className={header.map}>
+          <div>
             <NavLink to="#" className={header.nav}>
               Карта
             </NavLink>
           </div>
-          <div className={header.travel_routes}>
+          <div>
             <NavLink to="#" className={header.nav}>
               Маршруты
             </NavLink>
           </div>
+           <div>
+           <NavLink to="#" className={header.nav}>
+              Районы
+            </NavLink>
+           </div>
+           <div>
+           <NavLink to="#" className={header.nav}>
+              О нас
+            </NavLink>
+           </div>
+        </div>
+        <div className={header.search}>
+          <NavLink to='#'>
+            <FaSearchLocation />
+          </NavLink>
         </div>
         <div className={header.signin}>
-          <NavLink to="#" className={header.nav}>
+          <NavLink to="#">
             <FaUserCircle />
           </NavLink>
         </div>
