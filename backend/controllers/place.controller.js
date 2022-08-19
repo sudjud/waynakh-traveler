@@ -5,12 +5,12 @@ module.exports.placeController = {
 
   postPlace: async (req, res) => {
     try {
-      if(!req.headers.authorization) {
+      if (!req.headers.authorization) {
         return res.json('Нет прав доступа')
       }
       const token = req.headers.authorization.split(' ')[1];
       const user = await jwt.verify(token, process.env.JWT_SECRET);
-      if(!user.isAdmin) {
+      if (!user.isAdmin) {
         return res.json('Нет прав доступа')
       }
       const newPlace = await Place.create({
@@ -25,7 +25,7 @@ module.exports.placeController = {
 
   getPlaces: async (req, res) => {
     try {
-      const places = await Place.find({}).populate('author photos categories areas')
+      const places = await Place.find({}).populate('author photos categories areas comments')
       res.json(places);
     } catch (e) {
       res.json(e);
@@ -58,6 +58,25 @@ module.exports.placeController = {
       res.json(newPlace)
     } catch (e) {
       res.json(e);
+    }
+  },
+
+  addLikePlace: async (req, res) => {
+    try {
+      const place = await Place.findById(req.params.id)
+      if (place.likes.includes(req.user.id)) {
+        place.likes.splice(req.user.id.indexOf(), 1)
+      } else {
+        await Place.findByIdAndUpdate(req.params.id, {
+          $addToSet: {
+            likes: req.user.id
+          }
+        })
+      }
+      await place.save();
+      res.json(await Place.findById(req.params.id));
+    } catch (error) {
+      res.json(error)
     }
   }
 

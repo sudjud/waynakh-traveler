@@ -55,4 +55,23 @@ module.exports.tripController = {
       res.json(error)
     }
   },
+
+  addLikeTrip: async (req, res) => {
+    try {
+      const trip = await Trip.findById(req.params.id)
+      if (trip.likes.includes(req.user.id)) {
+        trip.likes.splice(req.user.id.indexOf(), 1)
+      } else {
+        await Trip.findByIdAndUpdate(req.params.id, {
+          $addToSet: {
+            likes: req.user.id
+          }
+        })
+      }
+      await trip.save();
+      res.json(await Trip.findById(req.params.id));
+    } catch (error) {
+      res.json(error)
+    }
+  }
 }
