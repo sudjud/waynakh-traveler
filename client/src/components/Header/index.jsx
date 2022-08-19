@@ -8,6 +8,7 @@ function Header() {
       <div className="container">
         <div className={header.left}>
           <div className={header.img}>
+            <NavLink to='/'>
             <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
@@ -114,36 +115,37 @@ function Header() {
                 />
               </g>
             </svg>
+            </NavLink>
           </div>
-          <div>
+          <div className={header.route}>
             <NavLink to="/map" className={header.nav}>
               Карта
             </NavLink>
-          </div>
-          <div>
+          </div >
+          <div className={header.route}>
             <NavLink to="#" className={header.nav}>
               Маршруты
             </NavLink>
           </div>
-          <div>
+          <div className={header.route}>
             <NavLink to="#" className={header.nav}>
               Районы
             </NavLink>
           </div>
-          <div>
+          <div className={header.route}>
             <NavLink to="#" className={header.nav}>
               О нас
             </NavLink>
           </div>
         </div>
-        <div className={header.search}>
+        <div>
           <NavLink to="#">
-            <FaSearchLocation />
+            <FaSearchLocation className={header.search} />
           </NavLink>
         </div>
-        <div className={header.signin}>
-          <NavLink to="/auth">
-            <FaUserCircle />
+        <div>
+          <NavLink to="/login">
+            <FaUserCircle className={header.signin} />
           </NavLink>
         </div>
       </div>
