@@ -6,5 +6,5 @@ const router = Router();
 router.get("/users", userController.getUser);
 router.post("/register", userController.registerUsers);
 router.post("/login", userController.login);
-router.patch("/users/travel", authMiddleware, userController.addTravel)
+router.patch("/users/travel", authMiddleware, userController.addTravel);
 module.exports = router;
