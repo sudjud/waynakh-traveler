@@ -41,3 +41,7 @@ const placeSchema = mongoose.Schema({
 const Place = mongoose.model('Place', placeSchema);
 
 module.exports = Place;
+
+// {
+//   "photos": ["62fd268f79622de3db334fb2", "62fd268f79622de3db334fb2"]
+// }

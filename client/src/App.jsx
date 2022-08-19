@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { fetchAreas } from "./features/areaSlice";
 import YandexMap from "./components/YandexMap/index";
 import { fetchPlaces } from "./features/placeSlice";
+import MainPage from './pages/MainPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route path="/login" element={<SignIn />}></Route>
         <Route path="/auth" element={<SignUp />}></Route>
         <Route path="/map" element={<YandexMap />}></Route>
+        <Route path="/" element={<MainPage />}></Route>
       </Routes>
     </div>
   );

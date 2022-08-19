@@ -4,9 +4,8 @@ const jwt = require("jsonwebtoken");
 module.exports.placeController = {
   postPlace: async (req, res) => {
     try {
-      console.log(1);
-      if (!req.headers.authorization) {
-        return res.json("Нет прав доступа");
+      if(!req.headers.authorization) {
+        return res.json('Нет прав доступа')
       }
       const token = req.headers.authorization.split(" ")[1];
       const user = await jwt.verify(token, process.env.JWT_SECRET);
@@ -25,7 +24,7 @@ module.exports.placeController = {
 
   getPlaces: async (req, res) => {
     try {
-      const places = await Place.find({}).populate("areas").populate("photos");
+      const places = await Place.find({}).populate('author photos categories areas')
       res.json(places);
     } catch (e) {
       res.json(e);
@@ -55,6 +54,7 @@ module.exports.placeController = {
       const newPlace = await Place.findByIdAndUpdate(req.params.id, {
         ...req.body,
       });
+      res.json(newPlace)
     } catch (e) {
       res.json(e);
     }

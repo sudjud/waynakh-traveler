@@ -22,7 +22,8 @@ module.exports.tripController = {
       const trips = await Trip.find({})
       res.json(trips)
     } catch (error) {
-      res.json(error)
+      console.log(22);
+      res.json(error.toString())
     }
   },
 
