@@ -8,13 +8,6 @@ import MapBalloonnn from "./MapBalloonnn";
 const YandexMap = () => {
   const places = useSelector((state) => state.place.places);
 
-  // console.log(places[0]);
-  //   const han = () => {
-  //     console.log("РАБОТАЕТ");
-  //   };
-  //   clickHandler={() => {
-  //     console.log("РАБОТАЕТ");
-  //   }}
   return (
     <div>
       <YMaps>
@@ -41,7 +34,6 @@ const YandexMap = () => {
             })}
           </ListBox>
           {places.map((item) => {
-            // console.log(item.photos[0].name);
             return (
               <MapBalloon
                 point={item.point}

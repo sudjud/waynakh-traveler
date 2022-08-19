@@ -16,9 +16,7 @@ const MapBalloon = ({ name, point, areas, photos }) => {
 
   return (
     <div>
-      {/* <img
-        src={require(`../../../../backend/uploads/images/${photos[0].name}`)}
-      ></img> */}
+
       <Placemark
         options={{ iconColor: "green" }}
         geometry={[+point_1, +point_2]}
