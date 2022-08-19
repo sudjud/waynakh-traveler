@@ -4,15 +4,19 @@ const Place = require("../models/Place.model");
 module.exports.commentController = {
   postComment: async (req, res) => {
     try {
-      const { text, photo } = req.body;
-      const { userId, placeId } = req.params;
-      const comment = await Comment.create({
-        text,
-        photo,
-        user: userId,
-        place: placeId,
-      });
-      res.json(comment);
+      const comment = await Comment.create ({
+        text:req.body.text,
+        user:req.user._id
+      })
+      await Place.findByIdAndUpdate(
+        req.body.placeId,
+        {
+          $push:{
+            comment: comment._id
+          }
+        }
+      )
+      res.json('added commentary')
     } catch (error) {
       res.json(error.toString());
     }
