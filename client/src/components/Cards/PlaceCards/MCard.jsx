@@ -1,4 +1,5 @@
 import card from './card.module.sass'
+import { motion } from 'framer-motion';
 import { BsShare } from 'react-icons/bs'
 import SimpleImageSlider from "react-simple-image-slider";
 import { FaComment } from 'react-icons/fa';
@@ -22,7 +23,10 @@ function MCard(props) {
   })
 
   return (
-    <div className={card.m}>
+    <motion.div 
+      className={card.m}
+      
+    >
       <div className={card.m__info}>
         <div className={card.m__name}>
           { name }
@@ -72,7 +76,7 @@ function MCard(props) {
           showNavs={true}
         />
       </div>
-    </div>
+    </motion.div>
   )
 };
 export default MCard;

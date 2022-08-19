@@ -16,7 +16,7 @@ module.exports.tripController = {
       res.json(error)
     }
   },
-
+  
   getTrips: async (req, res) => {
     try {
       const trips = await Trip.find({})
@@ -45,7 +45,7 @@ module.exports.tripController = {
     }
   },
 
-  updatePlace: async (req, res) => {
+  updateTrip: async (req, res) => {
     try {
       const newTrip = await Trip.findByIdAndUpdate(req.params.id, {
         ...req.body

@@ -1,23 +1,22 @@
-const Place = require('../models/Place.model');
-const jwt = require('jsonwebtoken')
+const Place = require("../models/Place.model");
+const jwt = require("jsonwebtoken");
 
 module.exports.placeController = {
-
   postPlace: async (req, res) => {
     try {
       if (!req.headers.authorization) {
         return res.json('Нет прав доступа')
       }
-      const token = req.headers.authorization.split(' ')[1];
+      const token = req.headers.authorization.split(" ")[1];
       const user = await jwt.verify(token, process.env.JWT_SECRET);
       if (!user.isAdmin) {
-        return res.json('Нет прав доступа')
+        return res.json("Нет прав доступа");
       }
       const newPlace = await Place.create({
         author: user.id,
-        ...req.body
-      })
-      res.json(newPlace)
+        ...req.body,
+      });
+      res.json(newPlace);
     } catch (e) {
       res.json(e);
     }
@@ -46,14 +45,14 @@ module.exports.placeController = {
       const newPlace = await Place.findByIdAndDelete(req.params.id);
       res.json(newPlace);
     } catch (e) {
-      res.json(e)
+      res.json(e);
     }
   },
 
   updatePlace: async (req, res) => {
     try {
       const newPlace = await Place.findByIdAndUpdate(req.params.id, {
-        ...req.body
+        ...req.body,
       });
       res.json(newPlace)
     } catch (e) {

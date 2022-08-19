@@ -30,7 +30,7 @@ export const tripSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(fetchTrips.fulfilled, (state, action) => {
-        state.places = action.payload;
+        state.trips = action.payload;
         state.loading = false;
         state.error = null;
       })
