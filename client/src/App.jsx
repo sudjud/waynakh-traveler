@@ -10,6 +10,7 @@ import { fetchAreas } from "./features/areaSlice";
 import YandexMap from "./components/YandexMap/index";
 import { fetchPlaces } from "./features/placeSlice";
 import MainPage from './pages/MainPage';
+import SCard from "./components/Cards/PlaceCards/SCard";
 
 function App() {
   const dispatch = useDispatch();

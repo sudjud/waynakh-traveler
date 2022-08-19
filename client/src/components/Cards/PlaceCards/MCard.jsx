@@ -25,15 +25,7 @@ function MCard(props) {
   return (
     <motion.div 
       className={card.m}
-      animate={{rotate: 360}}
-      transition={{
-        delay: 2,
-        duration: 2,
-        repeat: Infinity,
-        repeatDelay: 1,
-        // type: 'spring',
-        bounce: true
-      }}
+      
     >
       <div className={card.m__info}>
         <div className={card.m__name}>
