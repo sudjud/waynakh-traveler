@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
   email: { type: String, required: true, unique: true, },
-  trips: [
+  travels: [
     {
       place: {
         type: mongoose.SchemaTypes.ObjectId,

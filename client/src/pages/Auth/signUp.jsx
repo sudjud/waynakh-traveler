@@ -43,6 +43,7 @@ const SignUp = () => {
   };
 
   const handleSetEqual = () => {
+    dispatch(deleteError());
     if (password_1.length < 3) setEqual(true);
   };
 
@@ -62,10 +63,12 @@ const SignUp = () => {
         }
       });
       setMessagePass(false);
+      dispatch(deleteError());
       return;
     }
-    setMessagePass(true);
+
     dispatch(deleteError());
+    setMessagePass(true);
     console.log(error);
   };
 
@@ -119,11 +122,11 @@ const SignUp = () => {
             <AiFillEye className={auth.eye} onClick={togglePassword2} />
           )}
           {error && <div className={auth.warningSignUp}>{error}</div>}
-          {equal && (
+          {equal && !error ? (
             <div className={auth.warningSignUp}>
               * Пароль должен содержать больше 4 символов
             </div>
-          )}
+          ) : null}
           {messagePass && (
             <div className={auth.warningSignUp}>* Пароли не совпадают</div>
           )}
