@@ -1,13 +1,18 @@
 import React from "react";
+import card from '../Cards/PlaceCards/card.module.sass'
 import map from "./map.module.sass";
 import { Placemark } from "@pbe/react-yandex-maps";
 import imgg from "./1.jpg";
+import SCard from "../Cards/PlaceCards/SCard";
 // import { useEffect } from "react";
 // import { createPortal } from "react-dom";
 const MapBalloon = ({ name, point, areas, photos }) => {
   const [point_, point_2] = point.split(" ");
   const point_1 = point_.slice(0, point_.length - 1);
-  console.log(photos[0].name);
+
+  function myFunction(e) {
+    console.log(e.target);
+  } 
 
   return (
     <div>
@@ -19,10 +24,20 @@ const MapBalloon = ({ name, point, areas, photos }) => {
         geometry={[+point_1, +point_2]}
         properties={{
           balloonContent: `
-            <h2 >${name}</h2>
-            <h3>${areas.name}</h3>
-            <img class=${map.image} src="http://localhost:3030/${photos[0].name}" alt=${name}>
-            <a class=${map.ddd} href="">Подробнее</a>`,
+          <div class=${card.s}>
+          <div class=${card.s__image}>
+            <img src='http://localhost:3030/${photos[0].name}' alt="" />
+          </div>
+          <div class=${card.s__name}>
+            ${name}
+          </div>
+          <div class=${card.s__area}>
+            ${areas.name}
+          </div>
+          <div class=${card.s__buttons}>
+            <button onclick='location.href="http://localhost:3000/"' class=${card.s__viewAll}>Подробнее</button>
+          </div>
+        </div>`,
         }}
       />
     </div>
