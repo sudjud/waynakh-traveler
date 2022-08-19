@@ -13,6 +13,7 @@ function MCardSlider() {
 
   return (
     <div className={card.mSlider}>
+      <img src={`http://localhost:3030/uploads/images/7689347649ushkaloy.jpg`} alt="" />
       {
         places.map(item => {
           return (
