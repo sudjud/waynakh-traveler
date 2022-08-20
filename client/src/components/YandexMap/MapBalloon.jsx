@@ -1,18 +1,17 @@
 import React from "react";
-import card from '../Cards/PlaceCards/card.module.sass'
-import map from "./map.module.sass";
+import card from "../Cards/PlaceCards/card.module.sass";
 import { Placemark } from "@pbe/react-yandex-maps";
-import imgg from "./1.jpg";
-import SCard from "../Cards/PlaceCards/SCard";
-// import { useEffect } from "react";
-// import { createPortal } from "react-dom";
-const MapBalloon = ({ name, point, areas, photos }) => {
+
+const MapBalloon = ({ name, point, areas, photos, id }) => {
   const [point_, point_2] = point.split(" ");
   const point_1 = point_.slice(0, point_.length - 1);
 
-  function myFunction(e) {
-    console.log(e.target);
-  } 
+
+  function myFunction(id) {
+    return `http://localhost:3000/place/${id}`;
+  }
+
+  const login = myFunction(id);
 
   return (
     <div>
@@ -33,7 +32,7 @@ const MapBalloon = ({ name, point, areas, photos }) => {
             ${areas.name}
           </div>
           <div class=${card.s__buttons}>
-            <button onclick='location.href="http://localhost:3000/"' class=${card.s__viewAll}>Подробнее</button>
+            <button onclick='location.href="${login}"' class=${card.s__viewAll}>Подробнее</button>
           </div>
         </div>`,
         }}
