@@ -24,7 +24,7 @@ module.exports.placeController = {
 
   getPlaces: async (req, res) => {
     try {
-      const places = await Place.find({}).populate('author photos categories areas')
+      const places = await Place.find({}).populate('author photos categories comments areas')
       res.json(places);
     } catch (e) {
       res.json(e);
