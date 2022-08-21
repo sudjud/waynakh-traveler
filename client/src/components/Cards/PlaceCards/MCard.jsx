@@ -4,6 +4,7 @@ import { BsShare } from 'react-icons/bs'
 import SimpleImageSlider from "react-simple-image-slider";
 import { FaComment } from 'react-icons/fa';
 import { FcLike } from "react-icons/fc";
+import Likes from '../../Tools/Likes';
 
 function MCard(props) {
   const { id,
@@ -49,14 +50,7 @@ function MCard(props) {
               </div>
             </div>
             <div className={card.m__reactions_separator}></div>
-            <div className={card.m__reactions_wrapper}>
-              <div className={card.m__toLike}>
-                <FcLike />
-              </div>
-              <div className={card.m__likesCount}>
-                { likes.length }
-              </div>
-            </div>
+            <Likes id={id}/>
           </div>
         </div>
         <div className={card.m__buttons}>

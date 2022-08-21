@@ -85,9 +85,10 @@ module.exports.userController = {
       const token = await jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "7d",
       });
-      res.json(token);
+      const user = payload.id
+      res.json({token, user})
     } catch (error) {
-      res.json(error.toString());
+      res.json(error);
     }
   },
 

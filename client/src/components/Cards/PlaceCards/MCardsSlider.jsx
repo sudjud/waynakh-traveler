@@ -11,6 +11,7 @@ function MCardSlider() {
   useEffect(() => {
     dispatch(fetchPlaces());
   }, [dispatch])
+  
 
   return (
     <div className={card.mSlider}>
@@ -19,6 +20,7 @@ function MCardSlider() {
         places.map(item => {
           return (
             <MCard 
+              key={item._id}
               id={item._id}
               name={item.name}
               desc={item.description}
