@@ -1,5 +1,7 @@
 .m
   display: flex
+  position: relative
+  height: 100%
   padding: 30px
   border-radius: 50px
   min-width: 890px
@@ -9,6 +11,9 @@
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
   &__info
     padding-right: 50px
+    min-height: 100%
+    display: flex
+    flex-direction: column
   &__name
     font-size: 2.5rem
     font-weight: 600
@@ -25,8 +30,8 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding-top: 40px
-    padding-bottom: 60px
+    padding-top: 20px
+    flex: 1 1 auto
   &__author
     font-size: 1.5rem
     color: #636668
@@ -51,6 +56,7 @@
   &__buttons
     display: flex
     justify-content: center
+    margin-top: auto
   &__share
     border-radius: 50%
     background-color: rgba(0, 224, 199, 0.2)
@@ -87,10 +93,15 @@
   border-radius: 15px
   padding: 10px
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
+  min-height: 100%
+  display: flex
+  flex-direction: column
   &__image
     border-radius: 15px
     img
       width: 312px
+      max-height: 202px
+      object-fit: cover
       box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2)
       border: 1px solid white
       border-radius: 15px
@@ -106,11 +117,13 @@
     margin-top: 5px
     font-size: 1.1rem
     color: #006270
+    flex: 1 1 auto
   &__viewAll
     margin-top: 10px
     margin-left: auto
     background-color: #00E0C7
-    font-weight: 600
+    font-weight: 500
+    font-size: 1.05rem
     border-radius: 5px
     border: none
     padding: 6px 20px

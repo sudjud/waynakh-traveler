@@ -1,32 +1,22 @@
-import card from './card.module.sass'
-import { motion } from 'framer-motion';
-import { BsShare } from 'react-icons/bs'
+import card from "./card.module.sass";
+import { motion } from "framer-motion";
+import { BsShare } from "react-icons/bs";
 import SimpleImageSlider from "react-simple-image-slider";
-import { FaComment } from 'react-icons/fa';
+import { FaComment } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
+import Likes from '../../Tools/Likes';
 
 function MCard(props) {
-  const { id,
-    name,
-    area,
-    desc,
-    author,
-    likes,
-    comments,
-    photos 
-  } = props
+  const { id, name, area, desc, author, likes, comments, photos } = props;
 
-  let images = photos.map(item => {
+  let images = photos.map((item) => {
     return {
-      url: `http://localhost:3030/${item.name}`
-    }
-  })
+      url: `http://localhost:3030/${item.name}`,
+    };
+  });
 
   return (
-    <motion.div 
-      className={card.m}
-      
-    >
+    <motion.div className={card.m}>
       <div className={card.m__info}>
         <div className={card.m__name}>
           { name }
@@ -49,18 +39,13 @@ function MCard(props) {
               </div>
             </div>
             <div className={card.m__reactions_separator}></div>
-            <div className={card.m__reactions_wrapper}>
-              <div className={card.m__toLike}>
-                <FcLike />
-              </div>
-              <div className={card.m__likesCount}>
-                { likes.length }
-              </div>
-            </div>
+            <Likes id={id}/>
           </div>
         </div>
         <div className={card.m__buttons}>
-          <div className={card.m__share}><BsShare /></div>
+          <div className={card.m__share}>
+            <BsShare />
+          </div>
           <button className={card.m__viewAll}>Подробнее</button>
         </div>
       </div>
@@ -72,11 +57,11 @@ function MCard(props) {
           navStyle={2}
           images={images}
           showBullets={true}
-          bgColor={'transparent'}
+          bgColor={"transparent"}
           showNavs={true}
         />
       </div>
     </motion.div>
-  )
-};
+  );
+}
 export default MCard;

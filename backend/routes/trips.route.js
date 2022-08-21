@@ -9,6 +9,7 @@ router.get("/trip/:id", tripController.getTrip);
 router.post("/trip", tripController.postTrip);
 router.delete("/trip/:id", tripController.deleteTrip);
 router.patch("/trip/:id", tripController.updateTrip);
+// router.patch("/trip/:id", tripController.updatePlace);
 router.patch("/trip/:id/add-like", authMiddleware, tripController.addLikeTrip);
 router.patch("/trip/:id", tripController.updateTrip);
 

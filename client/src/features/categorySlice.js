@@ -30,7 +30,7 @@ const categorySlice = createSlice({
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.category = action.payload;
-        
+      
         state.loading = false;
         state.error = null;
       })

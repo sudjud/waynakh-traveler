@@ -32,14 +32,15 @@ export const signIn = createAsyncThunk(
       });
 
       const json = response.data;
-      console.log(json);
+      // console.log(json);
       if (json.error) {
         console.log(json);
         return thunkAPI.rejectWithValue(json.error);
       }
-      localStorage.setItem("token", json);
+      localStorage.setItem("token", json.token);
+      localStorage.setItem('userId', json.user);
 
-      return json;
+      return json
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.error);
     }
@@ -53,6 +54,7 @@ const userSlice = createSlice({
     error: null,
     loading: false,
     token: localStorage.getItem("token"),
+    userId: localStorage.getItem('userId')
   },
   reducers: {
     deleteToken: (state, action) => {
@@ -83,12 +85,13 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(signIn.rejected, (state, action) => {
-        // console.log(action.payload);
         state.error = action.payload;
         state.loading = false;
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        state.token = action.payload;
+        state.token = action.payload.token;
+        state.userId = action.payload.user
+        console.log(action.payload.user)
         state.loading = false;
         state.error = null;
       });
