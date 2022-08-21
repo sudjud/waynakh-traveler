@@ -1,12 +1,26 @@
 import header from "./header.module.sass";
 import { NavLink } from "react-router-dom";
-import { FaUserCircle, FaSearchLocation } from "react-icons/fa";
+import { TbMap2 } from 'react-icons/tb'
+import { FaSearchLocation } from 'react-icons/fa'
+import Sidebar from "./Sidebar";
 
 function Header() {
+  
+
   return (
-    <div className={header.header}>
-      <div className="container">
+    <div className={header.header}> 
+        <Sidebar />
         <div className={header.left}>
+          <NavLink to='/map' style={{textDecoration: 'none'}}>
+          <div className={header.map}>
+              <TbMap2 className={header.__map}/>
+              <li>Карта</li>
+            </div>
+          </NavLink>
+            <div className={header.search}>
+              <FaSearchLocation className={header.__search} />
+              <li style={{listStyle : 'none', fontSize : '20px', marginLeft : '12px'}}>Поиск</li>
+            </div>
           <div className={header.img}>
             <NavLink to='/'>
             <svg
@@ -117,37 +131,6 @@ function Header() {
             </svg>
             </NavLink>
           </div>
-          <div className={header.route}>
-            <NavLink to="/map" className={header.nav}>
-              Карта
-            </NavLink>
-          </div >
-          <div className={header.route}>
-            <NavLink to="#" className={header.nav}>
-              Маршруты
-            </NavLink>
-          </div>
-          <div className={header.route}>
-            <NavLink to="#" className={header.nav}>
-              Районы
-            </NavLink>
-          </div>
-          <div className={header.route}>
-            <NavLink to="#" className={header.nav}>
-              О нас
-            </NavLink>
-          </div>
-        </div>
-        <div>
-          <NavLink to="#">
-            <FaSearchLocation className={header.search} />
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/login">
-            <FaUserCircle className={header.signin} />
-          </NavLink>
-        </div>
       </div>
     </div>
   );
