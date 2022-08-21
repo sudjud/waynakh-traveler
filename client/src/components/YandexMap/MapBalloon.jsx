@@ -28,7 +28,7 @@ const MapBalloon = ({ name, point, areas, photos, id }) => {
           <div class=${card.s__name}>
             ${name}
           </div>
-          <div class=${card.s__area}>
+          <div style='flex: none' class=${card.s__area}>
             ${areas.name}
           </div>
           <div class=${card.s__buttons}>
