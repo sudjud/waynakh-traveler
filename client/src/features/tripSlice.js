@@ -11,6 +11,8 @@ export const fetchTrips = createAsyncThunk('trip/fetchTrips', async (_, thunkAPI
   }
 });
 
+
+
 export const tripSlice = createSlice({
   name: 'trip',
   initialState: {
