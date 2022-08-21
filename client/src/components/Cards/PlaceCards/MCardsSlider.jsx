@@ -3,7 +3,7 @@ import MCard from "./MCard";
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react";
 import { fetchPlaces } from "../../../features/placeSlice";
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 function MCardSlider() {
   const dispatch = useDispatch();
