@@ -1,9 +1,9 @@
 import React from "react";
-import { YMaps, Map, ListBox, SearchControl } from "@pbe/react-yandex-maps";
 import Footer from "../Footer";
-import { useSelector } from "react-redux";
 import MapBalloon from "./MapBalloon";
 import MapBalloonnn from "./MapBalloonnn";
+import { YMaps, Map, ListBox, SearchControl } from "@pbe/react-yandex-maps";
+import { useSelector } from "react-redux";
 
 const YandexMap = () => {
   const places = useSelector((state) => state.place.places);
@@ -36,6 +36,8 @@ const YandexMap = () => {
           {places.map((item) => {
             return (
               <MapBalloon
+                key={item._id}
+                id={item._id}
                 point={item.point}
                 name={item.name}
                 areas={item.areas}
@@ -45,7 +47,7 @@ const YandexMap = () => {
           })}
         </Map>
       </YMaps>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
