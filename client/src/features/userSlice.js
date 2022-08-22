@@ -58,6 +58,7 @@ const userSlice = createSlice({
   },
   reducers: {
     deleteToken: (state, action) => {
+      state.userId = null;
       state.token = null;
     },
     deleteError: (state, action) => {

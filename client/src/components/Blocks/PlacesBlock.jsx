@@ -7,10 +7,10 @@ function PlacesBlock() {
   return (
     <div className={block.places}>
       <h1 className={block.places__title}>
-        Стоит посетить
+      Стоит посетить
       </h1>
       <h6 className={block.places__desc}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, possimus.
+      Вашему вниманию места в наших краях, куда точно стоит поехать
       </h6>
       <img src={mountain} />
       <MCardSlider />

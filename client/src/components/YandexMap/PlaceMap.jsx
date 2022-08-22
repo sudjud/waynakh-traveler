@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 const PlaceMap = (props) => {
   const places = useSelector((state) => state.place.places);
-  const { id, w, h } = props;
+  const { id, w, h, zoom } = props;
   const place = places.find((item) => item._id === id);
 
   const [point_, point_2] = place.point.split(" ");
@@ -19,7 +19,7 @@ const PlaceMap = (props) => {
         <Map
           defaultState={{
             center: [+point_1, +point_2],
-            zoom: 18,
+            zoom: zoom ? zoom : 18,
           }}
           width={w}
           height={h}
