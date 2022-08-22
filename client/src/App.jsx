@@ -13,6 +13,8 @@ import MainPage from "./pages/MainPage";
 import SCard from "./components/Cards/PlaceCards/SCard";
 import Footer from "./components/Footer";
 import PlacePage from "./pages/PlacePage";
+import CategoriesBlock from "./components/Blocks/CategoriesBlock";
+
 
 function App() {
   const places = useSelector((state) => state.place.places);
@@ -32,6 +34,7 @@ function App() {
     return (
       <div className="app">
         <Header />
+          
         <Routes>
           <Route path="/login" element={<SignIn />}></Route>
           <Route path="/auth" element={<SignUp />}></Route>
@@ -45,13 +48,15 @@ function App() {
   return (
     <div className="app">
       <Header />
+
       <Routes>
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/map" element={<YandexMap />}></Route>
         <Route path="/login" element={<Navigate to="/" />}></Route>
         <Route path="/auth" element={<Navigate to="/" />}></Route>
-        <Route path='/place/:id' element={<PlacePage />} />
+        <Route path="/place/:id" element={<PlacePage />} />
       </Routes>
+      <CategoriesBlock />
     </div>
   );
 }
