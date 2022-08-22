@@ -11,6 +11,21 @@ export const fetchTrips = createAsyncThunk('trip/fetchTrips', async (_, thunkAPI
   }
 });
 
+export const likeTrip = createAsyncThunk('like/trip', async(data, thunkAPI) => {
+  try {
+    const res = await fetch(`http://localhost:3030/trip/${data}/add-like`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${thunkAPI.getState().user.token}`
+      }
+    })
+    const data = await res.json();
+    return thunkAPI.fulfillWithValue(data);
+  } catch (e) {
+    return e
+  }
+})
+
 
 
 export const tripSlice = createSlice({
@@ -35,6 +50,14 @@ export const tripSlice = createSlice({
         state.trips = action.payload;
         state.loading = false;
         state.error = null;
+      })
+      .addCase(likeTrip.fulfilled, (state, action) => {
+        state.trips = state.trips.map(item => {
+          if (item._id === action.payload._id) {
+            return action.payload
+          }
+          return item;
+        })
       })
   }
 })

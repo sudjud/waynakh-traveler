@@ -20,7 +20,7 @@ const Likes = (props) => {
         {
           <BsHeartFill
             style={
-              likes.includes(user) ? { color: "red" } : { color: "#DAAD86  " }
+              likes.includes(user) ? { color: "red" } : { color: "#DAAD86" }
             }
           />
         }

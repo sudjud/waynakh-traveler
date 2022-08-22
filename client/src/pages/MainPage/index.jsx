@@ -16,7 +16,16 @@ function MainPage() {
       <div className={main.placeBlock}>
         <PlacesBlock />
       </div>
-      <div className={main.beforeTrip}></div>
+      <div className={main.beforeTrip}>
+      <h1>
+        
+        Отправьтесь в небольшую поездку
+      </h1>
+      <h6>
+        Вашему вниманию места в наших краях, куда точно стоит поехать
+        Маршруты собраны так, чтобы тот, кто любит горы, увидел все их разнообразие, а тот, кто любит историю, мог проникнуться ею в старинных башнях.
+      </h6>
+      </div>
       <TripCard />
     </div>
   )

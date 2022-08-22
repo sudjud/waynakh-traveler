@@ -6,6 +6,7 @@ import card from "./card.module.sass";
 import { BsHeartFill } from "react-icons/bs";
 import { BsShare } from "react-icons/bs";
 import Likes from "../../Tools/Likes";
+import TripLike from "../../Tools/TripLikes";
 
 const TripCard = (props) => {
   const dispatch = useDispatch();
@@ -15,13 +16,6 @@ const TripCard = (props) => {
   }, [dispatch]);
   return (
     <div className={card.main}>
-      <div className={card.header}>
-        <div className={card.f}>
-          <div className={card.line}></div>
-          <div className={card.text}>Маршруты</div>
-        </div>
-        <div className={card.all}>ВСЕ МАРШРУТЫ {'>'} </div>
-      </div>
       <div className={card.trip}>
         {trip.map((item) => {
           return (
@@ -53,8 +47,7 @@ const TripCard = (props) => {
               <div className={card.footer}>
                 <div>By ADMIN</div>
                 <div className={card.like}>
-                  <BsShare />
-                  <div className={card.separator}></div>
+                  <TripLike id={item._id}/>
                 </div>
               </div>
             </div>
