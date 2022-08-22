@@ -6,7 +6,7 @@ export const fetchCategories = createAsyncThunk('fetch/Category', async (_, thun
     const data = await res.json();
     return data
   } catch (error) {
-
+    thunkAPI.rejectWithValue(error)
   }
 })
 
@@ -30,7 +30,6 @@ const categorySlice = createSlice({
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.category = action.payload;
-      
         state.loading = false;
         state.error = null;
       })

@@ -3,8 +3,8 @@ import MCard from "./MCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchPlaces } from "../../../features/placeSlice";
-// import { motion } from 'framer-motion';
-import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 function MCardSlider() {
   const dispatch = useDispatch();
@@ -15,25 +15,28 @@ function MCardSlider() {
 
   return (
     <div className={card.mSlider}>
-      <img
-        src={`http://localhost:3030/uploads/images/7689347649ushkaloy.jpg`}
-        alt=""
-      />
-      {places.map((item) => {
-        return (
-          <MCard
-            key={item._id} 
-            id={item._id}
-            name={item.name}
-            desc={item.description}
-            author={item.author}
-            likes={item.likes}
-            comments={item.comments}
-            photos={item.photos}
-            area={item.areas}
-          />
-        );
-      })}
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={1.9}
+      >
+        {places.map((item) => {
+          return (
+            <SwiperSlide>
+              <MCard
+                key={item._id}
+                id={item._id}
+                name={item.name}
+                desc={item.description}
+                author={item.author}
+                likes={item.likes}
+                comments={item.comments}
+                photos={item.photos}
+                area={item.areas}
+              />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 }

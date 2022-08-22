@@ -1,11 +1,12 @@
 const { Router } = require("express");
+const mongoose = require("mongoose");
 const { commentController } = require("../controllers/comments.controller");
 const router = Router();
 const authMiddleware = require("../middlewares/auth.middleware");
 
+
 router.get("/comment", commentController.getComment);
-router.post(
-  "/comment/place/:placeId",
+router.post("/comment/place/:idParams", 
   authMiddleware,
   commentController.postComment
 );
