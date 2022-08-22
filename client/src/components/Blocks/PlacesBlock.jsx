@@ -10,7 +10,7 @@ function PlacesBlock() {
         Стоит посетить
       </h1>
       <h6 className={block.places__desc}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, possimus.
+        Вашему вниманию места в наших краях, куда точно стоит поехать
       </h6>
       <img src={mountain} />
       <MCardSlider />

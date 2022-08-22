@@ -1,7 +1,9 @@
 import card from './card.module.sass'
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function SCard(props) {
+  const navigate = useNavigate();
   const { id } = props
   const cardItem = useSelector(state => state.place.places.find(item => item._id === id))
 
@@ -18,7 +20,10 @@ function SCard(props) {
           {cardItem.areas.name}
         </div>
         <div className={card.s__buttons}>
-          <button className={card.s__viewAll}>Подробнее</button>
+          <button onClick={() => {
+            navigate(`/place/${id}`);
+            window.location.reload();
+          }} className={card.s__viewAll}>Подробнее</button>
         </div>
       </div>
     )

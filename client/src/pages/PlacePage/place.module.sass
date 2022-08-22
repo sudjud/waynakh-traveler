@@ -1,10 +1,11 @@
 .place
   display: flex
   flex-direction: column
+  padding-bottom: 100px
   &__main
     background-size: cover !important
     position: relative
-    height: calc(92vh - 102px)
+    height: 91vh
     &_label
       background-color: rgba(white, 0.8)
       max-width: 570px
@@ -24,7 +25,7 @@
       display: inline
       margin: 0 5px
   &__name
-    color: #00E0C7
+    color: #31708E 
     font-size: 3rem
     font-weight: 700
 
@@ -32,9 +33,11 @@
     display: flex
     align-items: center
     font-size: 1.2rem
-    height: 8vh
+    border-radius: 0 0 20px 20px
+    height: 9vh
     font-weight: 500
-    background-color: rgba(#006270, 0.2)
+    background-color: rgba(#31708E, 1)
+    box-shadow: 0px 11px 15px 0px rgba(34, 60, 80, 0.3)
     span
       text-decoration: underline
       cursor: pointer
@@ -50,7 +53,11 @@
       color: red
   &__reactions
     display: flex
+    position: relative
     padding: 33px 0
+    &_like
+      position: absolute
+      left: 50px
 
   &__info
     display: flex
@@ -62,18 +69,51 @@
   &__desc
     font-size: 1.4rem
     font-weight: 500
-    padding: 0 80px
     line-height: 2rem
+    padding-right: 80px
   &__near
     padding-top: 60px
     &_items
       display: flex
+      flex-wrap: wrap
       padding-top: 20px
       gap: 15px
       & > div
         box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.2)
   &__subtitle
     font-size: 2.2rem
-    color: #ff0000
+    color: #00488b
     font-weight: 500
+
+  &__photos
+    width: fit-content
+    padding: 0 20px 20px 0
+    margin-top: 60px
+    border-radius: 30px
+    background-color: #F7F9FB
+    div
+      border-radius: 30px
+
+  &__map
+    position: relative
+    background-color: #31708E
+    border-radius: 20px
+    color: #fff
+    font-size: 1.1rem
+    &_info
+      padding: 10px 20px
+      font-size: 0.9rem
+      font-weight: 400
+    &_area
+      font-weight: 500
+      font-size: 1.1rem
+      margin-bottom: 10px
+      
+  &__towerImg
+    position: absolute
+    top: 550px
+    right: -100px
+
+  
+
   

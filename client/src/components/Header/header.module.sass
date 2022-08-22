@@ -1,50 +1,36 @@
 .header
-  background-color: #006270
-  box-shadow: 0px 10px 44px rgba(0, 0, 0, 0.1)
-  padding-top: 5px
-  height: 84px
-  position: sticky
+  width: 100%
+  z-index: 100
+  position: fixed
   top: 0
-  z-index: 1
-  font-size: 27px
- 
-.img
-  svg
-    fill: white
-    width: 200px
-    height: 90px
-    object-fit: cover
-    margin : 0 0 0 330px
-.svg
-  fill: white !important  
+  padding: 10px 0
+  transition: top 0.6s
+  background-color: rgba(#F7F9FB, 0.7)
+  &_hidden
+    background-color: rgba(#F7F9FB, 0.7)
+    z-index: 100
+    top: -78.34px
+    width: 100%
+    padding: 10px
+    position: fixed
+    transition: top 0.6s
+
+.map
+  font-size: 3rem
+  line-height: 0
+  padding-left: 10px
+
 
 
 .left
   display: flex
+  flex-direction: row
+  justify-content: space-between
   align-items: center
-  margin : 0 0 0 100px
+.img
+  img
+    width: 200px
 
-.home
-  font-size: 17px
-
-.map
-  display: flex
-  cursor: pointer
-  &:hover
-    color: #333
-  &__map
-  color: #fff
-  font-size: 33px
-  li
-    font-size: 20px 
-    list-style: none
-    margin-left: 12px
-
-.search
-  display: flex
-  margin: 0 0 0 36px
-  color: white
-  cursor: pointer
-  &:hover
-    color: #333 !important
-  
+.login
+  font-size: 2rem
+  padding-right: 10px
