@@ -2,14 +2,12 @@ import header from "./header.module.sass";
 import { NavLink } from "react-router-dom";
 import { TbMap2 } from 'react-icons/tb'
 import { FaSearchLocation } from 'react-icons/fa'
-import Sidebar from "./Sidebar";
 
 function Header() {
   
 
   return (
     <div className={header.header}> 
-        <Sidebar />
         <div className={header.left}>
           <NavLink to='/map' style={{textDecoration: 'none'}}>
           <div className={header.map}>
