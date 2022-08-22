@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 
 const Sidebar = () => {
-    const category = useSelector(state => state.place.places)
+    const place = useSelector(state => state.place.places)
     // console.log(category)
 
     return (
@@ -57,7 +57,7 @@ const Sidebar = () => {
               <NavText>
                   <NavLink to='/'>Места</NavLink> 
               </NavText>
-                    {category.map((el) => {
+                    {place.map((el) => {
                   return (
                         <NavItem  eventKey="charts/linechar">
                   <NavText key={el._id}>

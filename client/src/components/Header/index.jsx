@@ -13,14 +13,14 @@ function Header() {
         <div className={header.left}>
           <NavLink to='/map' style={{textDecoration: 'none'}}>
           <div className={header.map}>
-              <TbMap2 className={header.__map}/>
+              <TbMap2 className={header.icon}/>
               <li>Карта</li>
             </div>
-          </NavLink>
+          </NavLink> 
             <div className={header.search}>
               <FaSearchLocation className={header.__search} />
               <li style={{listStyle : 'none', fontSize : '20px', marginLeft : '12px'}}>Поиск</li>
-            </div>
+            </div>  
           <div className={header.img}>
             <NavLink to='/'>
             <svg
@@ -129,7 +129,7 @@ function Header() {
                 />
               </g>
             </svg>
-            </NavLink>
+            </NavLink> 
           </div>
       </div>
     </div>
