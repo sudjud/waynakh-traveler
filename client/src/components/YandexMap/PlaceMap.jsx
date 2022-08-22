@@ -4,16 +4,14 @@ import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-const PlaceMap = () => {
+const PlaceMap = (props) => {
   const places = useSelector((state) => state.place.places);
-  const { idParams } = useParams();
-
-  const place = places.find((item) => item._id === idParams);
+  const { id, w, h, zoom } = props;
+  const place = places.find((item) => item._id === id);
 
   const [point_, point_2] = place.point.split(" ");
   const point_1 = point_.slice(0, point_.length - 1);
 
-  // console.log(place);
 
   return (
     <div>
@@ -21,10 +19,10 @@ const PlaceMap = () => {
         <Map
           defaultState={{
             center: [+point_1, +point_2],
-            zoom: 18,
+            zoom: zoom ? zoom : 18,
           }}
-          width={"50%"}
-          height={"50vh"}
+          width={w}
+          height={h}
         >
           <Placemark
             modules={["geoObject.addon.balloon", "geoObject.addon.hint"]}

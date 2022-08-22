@@ -11,6 +11,8 @@ import YandexMap from "./components/YandexMap/index";
 import { fetchPlaces } from "./features/placeSlice";
 import MainPage from "./pages/MainPage";
 import SCard from "./components/Cards/PlaceCards/SCard";
+import Footer from "./components/Footer";
+import PlacePage from "./pages/PlacePage";
 
 function App() {
   const places = useSelector((state) => state.place.places);
@@ -35,6 +37,7 @@ function App() {
           <Route path="/auth" element={<SignUp />}></Route>
           <Route path="/map" element={<YandexMap />}></Route>
           <Route path="/" element={<MainPage />}></Route>
+          <Route path='/place/:id' element={<PlacePage />} />
         </Routes>
       </div>
     );
@@ -47,6 +50,7 @@ function App() {
         <Route path="/map" element={<YandexMap />}></Route>
         <Route path="/login" element={<Navigate to="/" />}></Route>
         <Route path="/auth" element={<Navigate to="/" />}></Route>
+        <Route path='/place/:id' element={<PlacePage />} />
       </Routes>
     </div>
   );

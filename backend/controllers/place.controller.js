@@ -82,7 +82,7 @@ module.exports.placeController = {
         });
       }
       await place.save();
-      res.json(await Place.findById(req.params.id));
+      res.json(await Place.findById(req.params.id).populate('author photos categories areas comments'));
     } catch (error) {
       res.json(error);
     }

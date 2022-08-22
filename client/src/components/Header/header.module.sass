@@ -1,34 +1,36 @@
 .header
-  background-color: #006270
-  box-shadow: 0px 10px 44px rgba(0, 0, 0, 0.1)
-  padding-top: 5px
-  position: sticky
+  width: 100%
+  z-index: 100
+  position: fixed
   top: 0
-  z-index: 1
-  font-size: 27px
-  a 
-    margin : 0 0 0 50px
+  padding: 10px 0
+  transition: top 0.6s
+  background-color: rgba(#F7F9FB, 0.7)
+  &_hidden
+    background-color: rgba(#F7F9FB, 0.7)
+    z-index: 100
+    top: -78.34px
+    width: 100%
+    padding: 10px
+    position: fixed
+    transition: top 0.6s
+
+.map
+  font-size: 3rem
+  line-height: 0
+  padding-left: 10px
 
 
-.img
-  svg
-    fill: white
-    width: 200px
-    height: 90px
-    object-fit: cover
-.svg
-  fill: white !important  
 
-.route a  
-  text-decoration: none
-  color: #ffff
-  margin : 0 0 0 130px
-  
-.search
-  color : #ffffff
-  margin : 0 0 0 100px
-.signin 
-  color : #ffffff
 .left
   display: flex
+  flex-direction: row
+  justify-content: space-between
   align-items: center
+.img
+  img
+    width: 200px
+
+.login
+  font-size: 2rem
+  padding-right: 10px
