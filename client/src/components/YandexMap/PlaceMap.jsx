@@ -13,7 +13,7 @@ const PlaceMap = () => {
   const [point_, point_2] = place.point.split(" ");
   const point_1 = point_.slice(0, point_.length - 1);
 
-  console.log(place);
+  // console.log(place);
 
   return (
     <div>

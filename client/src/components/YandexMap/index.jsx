@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../Footer";
 import MapBalloon from "./MapBalloon";
 import MapBalloonnn from "./MapBalloonnn";
 import { YMaps, Map, ListBox, SearchControl } from "@pbe/react-yandex-maps";
@@ -17,7 +16,7 @@ const YandexMap = () => {
             zoom: 10,
           }}
           width={"100%"}
-          height={"70vh"}
+          height={"50vh"}
         >
           <SearchControl
             options={{
@@ -47,7 +46,6 @@ const YandexMap = () => {
           })}
         </Map>
       </YMaps>
-      <Footer />
     </div>
   );
 };
