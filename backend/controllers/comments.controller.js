@@ -6,18 +6,17 @@ module.exports.commentController = {
     try {
       const comment = await Comment.create({
         text: req.body.text,
-        user: req.user.id
+        user: req.user.id,
       });
-      console.log(comment)
-      await Place.findByIdAndUpdate(
-        req.params.placeId,
-        {
-          $push:{
-            comments:comment
-          }
-        }
-      )
-      res.json('added comment');
+      const place = await Place.findByIdAndUpdate(req.params.idParams, {
+        $push: {
+          comments: comment._id,
+        },
+      });
+
+      const comments = await Comment.findById(comment._id).populate("user");
+
+      res.json(comments);
     } catch (error) {
       res.json(error.toString());
     }
@@ -42,14 +41,12 @@ module.exports.commentController = {
       await Comment.findByIdAndRemove(req.params.commentId);
       res.json("Комментарий удален!");
     } catch (error) {
-      res.json(error.toString());
+      return res.json(error.toString());
     }
   },
   getComment: async (req, res) => {
     try {
-      const comments = await Comment.find()
-        .populate("user", "-__v")
-        .populate("place");
+      const comments = await Comment.find().populate("user", "-__v");
       res.json(comments);
     } catch (error) {
       res.json(error.toString());

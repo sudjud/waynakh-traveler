@@ -1,11 +1,12 @@
 const Place = require("../models/Place.model");
 const jwt = require("jsonwebtoken");
+const { populate } = require("../models/Place.model");
 
 module.exports.placeController = {
   postPlace: async (req, res) => {
     try {
       if (!req.headers.authorization) {
-        return res.json('Нет прав доступа')
+        return res.json("Нет прав доступа");
       }
       const token = req.headers.authorization.split(" ")[1];
       const user = await jwt.verify(token, process.env.JWT_SECRET);
@@ -24,7 +25,15 @@ module.exports.placeController = {
 
   getPlaces: async (req, res) => {
     try {
-      const places = await Place.find({}).populate('author photos categories areas comments')
+      const places = await Place.find({})
+        .populate({
+          path: "comments",
+          populate: {
+            path: "user",
+            model: "User",
+          },
+        })
+        .populate("likes photos categories areas author");
       res.json(places);
     } catch (e) {
       res.json(e);
@@ -54,7 +63,7 @@ module.exports.placeController = {
       const newPlace = await Place.findByIdAndUpdate(req.params.id, {
         ...req.body,
       });
-      res.json(newPlace)
+      res.json(newPlace);
     } catch (e) {
       res.json(e);
     }
@@ -62,21 +71,20 @@ module.exports.placeController = {
 
   addLikePlace: async (req, res) => {
     try {
-      const place = await Place.findById(req.params.id)
+      const place = await Place.findById(req.params.id);
       if (place.likes.includes(req.user.id)) {
-        place.likes.splice(req.user.id.indexOf(), 1)
+        place.likes.splice(req.user.id.indexOf(), 1);
       } else {
         await Place.findByIdAndUpdate(req.params.id, {
           $addToSet: {
-            likes: req.user.id
-          }
-        })
+            likes: req.user.id,
+          },
+        });
       }
       await place.save();
       res.json(await Place.findById(req.params.id).populate('author photos categories areas comments'));
     } catch (error) {
-      res.json(error)
+      res.json(error);
     }
-  }
-
-}
+  },
+};
