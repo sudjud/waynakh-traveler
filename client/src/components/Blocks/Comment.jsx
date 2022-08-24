@@ -12,48 +12,48 @@ import {
 const Comment = () => {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
-  const { idParams } = useParams();
+  const { id } = useParams();
+  const comments = useSelector((state) => state.comment.comment);
 
   useEffect(() => {
     dispatch(fetchComment());
   }, [dispatch]);
-  const comment = useSelector((state) => state.comment.comment);
-  const loading = useSelector((state) => state.comment.loading);
+  console.log(id);
 
-  //   console.log(comment);
+  const handleAddComment = () => {
+    dispatch(addComment({ text, id }));
+    setText("");
+    dispatch(fetchComment());
+  };
 
   const handleText = (e) => {
     setText(e.target.value);
   };
 
-  const handleAddComment = () => {
-    // console.log(1);
-    dispatch(addComment({ text: text, idParams }));
-    setText("");
-  };
   const handleDelete = (id) => {
     dispatch(deleteComment(id));
   };
 
-  if (!loading && comment) {
-    // console.log(comment[0].user.login);
-    return (
-      <div className={block.comments}>
-        {/* <input type="file" /> */}
+  return (
+    <div className={block.comments}>
+      <div className={block.title}>Комментарии</div>
         <div className={block.addBlock}>
-        <input
-          type="text"
-          className="input-add-comment"
-          value={text}
-          onChange={handleText}
-        />
-        <button className={block.buttonAdd} onClick={() => handleAddComment()}>
-          Добавить
-        </button>
+          <input
+            type="text"
+            className="input-add-comment"
+            value={text}
+            onChange={handleText}
+          />
+          <button
+            className={block.buttonAdd}
+            onClick={() => handleAddComment()}
+          >
+            Добавить
+          </button>
         </div>
-        {comment.map((item) => {
+        {comments.map((item) => {
           return (
-            <div className={block.comment}>
+            <div key={item._id} className={block.comment}>
               <div className={block.login}>{item.user.login}</div>
               <div className={block.text}>
                 <div>{item.text}</div>
@@ -67,10 +67,8 @@ const Comment = () => {
             </div>
           );
         })}
-      </div>
-    );
-  }
-  return <div>Загрузка</div>;
+    </div>
+  );
 };
 
 export default Comment;

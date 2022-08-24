@@ -15,10 +15,10 @@ export const fetchComment = createAsyncThunk(
 
 export const addComment = createAsyncThunk(
   "comment/addComment",
-  async ({ text, idParams }, thunkAPI) => {
+  async ({ text, id }, thunkAPI) => {
     try {
       const response = await axios.post(
-        `http://localhost:3030/comment/place/${idParams}`,
+        `http://localhost:3030/comment/place/${id}`,
         {
           text,
         },
@@ -31,6 +31,7 @@ export const addComment = createAsyncThunk(
 
       const token = response.data;
       if (token.error) {
+        console.log(22)
         return thunkAPI.rejectWithValue(token.error);
       }
       return token;
@@ -104,20 +105,6 @@ const commentSlice = createSlice({
       })
       .addCase(fetchComment.pending, (state) => {
         state.loading = true;
-      })
-      // ===== Добавление дел =====
-      .addCase(addComment.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(addComment.rejected, (state, action) => {
-        state.error = action.payload;
-        state.loading = false;
-      })
-      .addCase(addComment.fulfilled, (state, action) => {
-        console.log(action)
-        state.comment.push(action.payload);
-        state.loading = false;
-        state.error = null;
       })
       // ==== Удаление дел ====
       .addCase(deleteComment.pending, (state, action) => {

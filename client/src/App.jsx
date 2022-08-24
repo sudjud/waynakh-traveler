@@ -13,7 +13,6 @@ import MainPage from "./pages/MainPage";
 import SCard from "./components/Cards/PlaceCards/SCard";
 import Footer from "./components/Footer";
 import PlacePage from "./pages/PlacePage";
-import CategoriesBlock from "./components/Blocks/CategoriesBlock";
 
 
 function App() {
@@ -56,7 +55,6 @@ function App() {
         <Route path="/auth" element={<Navigate to="/" />}></Route>
         <Route path="/place/:id" element={<PlacePage />} />
       </Routes>
-      <CategoriesBlock />
     </div>
   );
 }

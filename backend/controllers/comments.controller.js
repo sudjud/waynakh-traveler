@@ -8,6 +8,7 @@ module.exports.commentController = {
         text: req.body.text,
         user: req.user.id,
       });
+      console.log(comment);
       const place = await Place.findByIdAndUpdate(req.params.idParams, {
         $push: {
           comments: comment._id,

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { fetchPlaces } from "../../features/placeSlice";
 import Likes from "../../components/Tools/Likes";
 import Comments from "../../components/Tools/Comments";
+import Comment from "../../components/Blocks/Comment";
 
 function PlacePage() {
   const { id } = useParams();
@@ -123,6 +124,7 @@ function PlacePage() {
         </div>
 
         <div className={placeStyle.place__info}>
+          <Comment />
           <div>
             <div className={placeStyle.place__desc}>{place.description}</div>
             <div className={placeStyle.place__photos}>
@@ -168,6 +170,7 @@ function PlacePage() {
             />
           </div>
         </div>
+        
       </div>
     );
   }
