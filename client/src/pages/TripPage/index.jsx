@@ -4,7 +4,9 @@ function TripPage() {
 
   return (
     <div className={style.tripPage}>
-
+      <div className={style.tripPage__main}>
+        
+      </div>
     </div>
   )
 };
